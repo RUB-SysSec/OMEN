@@ -1,0 +1,39 @@
+package     "alphabetCreator"
+version     "__VERSION__"
+versiontext "The MIT License (MIT)\nCopyright (c) 2017 Horst Goertz Institute for IT-Security\n(Ruhr-University Bochum)"
+description "alphabetCreator is part of the Ordered Markov ENumerator (OMEN).\n\
+alphabetCreator creates a new alphabet based on a given password list."
+
+section "Input Files"
+option "pwList"
+        -
+        "Password list for creating the alphabet"
+        string typestr="filename"
+        required
+option "size"
+       s
+       "Defines the alphabet size. The value should be in range 1 to 256"
+       int
+       required
+option "alphabet"
+       a
+       "Defines the file containing the alphabet"
+       string typestr="filename"
+       required
+option "output"
+       o
+       "Defines the output file for the build alphabet"
+       string typestr="filename"
+       required
+
+section "Output Modes"
+option "printWarnings"
+       w
+       "prints warnings"
+       flag
+       off
+option "frequency"
+       f
+       "Writes frequency"
+       flag
+       off

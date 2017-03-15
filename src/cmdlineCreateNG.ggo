@@ -1,0 +1,111 @@
+package     "createNG"
+version     "__VERSION__"
+versiontext "The MIT License (MIT)\nCopyright (c) 2017 Horst Goertz Institute for IT-Security\n(Ruhr-University Bochum)"
+description "createNG is part of the Ordered Markov ENumerator (OMEN).\ncreateNG creates nGram based on the given password list."
+
+section "Input Files"
+option "iPwdList"
+       -
+       "Password list to create nGrams."
+       string typestr="FILENAME"
+       required
+
+section "Output Filenames"
+option "cPout"
+       c
+       "Changes output filename for conditional probabilities."
+       string typestr="FILENAME"
+       default="CP"
+       optional
+option "iPout"
+       i
+       "Changes output filename for initial probabilities."
+       string typestr="FILENAME"
+       default="IP"
+       optional
+option "ePout"
+       e
+       "Changes output filename for end probabilities"
+       string typestr="FILENAME"
+       default="EP"
+       optional
+option "lenout"
+       l
+       "Changes output filename for password lengths levels"
+       string typestr="FILENAME"
+       default="LN"
+       optional
+option "config"
+       C
+       "Changes config filename"
+       string typestr="FILENAME"
+       default="createConfig"
+       optional
+option "prefix"
+       p
+       "Adds given prefix to all output files"
+       string
+       optional
+option "suffix"
+       s
+       "Adds given suffix to all output files"
+       string
+       optional
+option "datefix"
+       d
+       "Adds the current date and time as suffix to all output files"
+       flag
+       off
+
+section "nGram Calculation"
+option "ngram"
+       n
+       "Changes the size of the nGram n"
+       int values="2","3","4","5"
+       default="4"
+       optional
+option "maxLevel"
+       m
+       "Changes the maximum level in range 2 to 101"
+       int
+       default="11"
+       optional
+option "alphabet"
+       a
+       "Changes the used alphabet to the given <string>"
+       string
+       optional
+option "fAlphabet"
+       A
+       "Changes the used alphabet to the alphabet found in <filename>."
+       string typestr="FILENAME"
+       optional
+option "smoothing"
+       S
+       "Changes the used smoothing function to the one defined in <filename>."
+       string typestr="FILENAME"
+       optional
+
+section "Output Modes"
+option "verbose"
+       v
+       "Gain information about settings and results during run time."
+       flag
+       off
+option "verboseFile"
+       F
+       "Gain detailed information in the output files."
+       flag
+       off
+option "printWarnings"
+       w
+       "Prints any warning (if verbose mode is active)."
+       flag
+       off
+
+section "Others"
+option "withCount"
+       u
+       "The given password list is counted (like this: #count password)."
+       flag
+       off

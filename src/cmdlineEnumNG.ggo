@@ -1,0 +1,97 @@
+package     "enumNG"
+version     "__VERSION__"
+versiontext "The MIT License (MIT)\nCopyright (c) 2017 Horst Goertz Institute for IT-Security\n(Ruhr-University Bochum)"
+description "enumNG is part of the Ordered Markov ENumerator (OMEN).\nenumNG creates passwords based on the nGrams defined in createConfig."
+
+section "Modes"
+option "username"
+       u
+       "Activate username mode using the data in the given file"
+       string typestr="FILENAME"
+       optional
+option "simAtt"
+       s
+       "Execute a simulated attack against the given target file"
+       string typestr="FILENAME"
+       optional
+option "pipeMode"
+       p
+       "Only print generated Passwords and nothing else (overrides any other mode!)"
+       flag
+       off
+
+section "Password Generation"
+option "alpha"
+       a
+       "Apply boosting factor alpha. Read alpha values from filename. Alphas need to be in the same order as the hints."
+       string typestr="FILENAME"
+       optional
+option "hint"
+       H
+       "File containing the hints for alpha boosting. Need to be in the same order as the alpha values."
+       string typestr="FILENAME"
+       optional
+option "boostEP"
+       -
+       "Controls wether EPs are boosted or not."
+       flag
+       off
+option "llFactor"
+       L
+       "Apply the given level length factor. Factor should be in range 0.0 to 10.0"
+       float default="0.0"
+       optional
+option "llSet"
+       S
+       "Set all length level to the given value. Values should be in range 0 to 101"
+       int default="0"
+       optional
+option "optimizedLS"
+       O
+       "Activate optimized length scheduling"
+       flag
+       off
+option "fixedLength"
+       l
+       "Only generate Passwords of the given length between 3 and 19. Default disabled."
+       int default="0"
+       optional
+option "maxattempts"
+       m
+       "Set the amount of passwords created. The value should be in range 10^-1 to 10^12"
+       int
+       optional
+option "endless"
+       e
+       "Generate all possible passwords (this may take a while)"
+       flag
+       off
+option "ignoreEP"
+       E
+       "Ignore the endProbs while generating Passwords"
+       flag
+       off
+
+section "Output Modes"
+option "verbose"
+       v
+       "Gain information about settings and results during run time"
+       flag
+       off
+option "verboseFile"
+       F
+       "Stores the generated passwords on hard drive disc (independent of the used mode)"
+       flag
+       off
+option "printWarnings"
+       w
+       "Prints any warning (if verbose mode is active)."
+       flag
+       off
+
+section "Others"
+option "config"
+       C
+       "Change the used config file"
+       string typestr="FILENAME"
+       optional
