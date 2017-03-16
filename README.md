@@ -8,7 +8,7 @@ User Guide
 -----------
 
 OMEN consists of two separate program modules: `createNG` and `enumNG`. `createNG`
-calculates the probabilities based on a given list of passwords and stores them
+calculates n-gram probabilities based on a given list of passwords and stores them
 on the hard disk. Based on these probabilities `enumNG` enumerates new
 passwords in the correct order (descending).
 
@@ -84,7 +84,7 @@ It will create an ordered list with 10,000 passwords only. If you are interested
 
 `./enumNG -p -m 10000`
 
-If you are interested in evaluating the guessing performance against a *plaintext* password test set use the argument `-s`. Please note: In this mode OMEN benefits from the adaptive length scheduling algorithm incorporating live feedback, which is not available (due to the missing feedback channel) in *file*, *stdout* mode.
+If you are interested in evaluating the guessing performance against a *plaintext* password test set use the argument `-s`. Please note: In this mode OMEN benefits from the adaptive length scheduling algorithm incorporating live feedback, which is not available (due to the missing feedback channel) in *file* and *stdout* mode.
 
 `./enumNG -s=password-testing-list.txt -m 10000`
 
@@ -94,7 +94,13 @@ Both modules provide a help dialog which can be shown using the `-h` or `--help`
 
 ### Password Cracking
 
-Besides the [academic use case](https://password-guessing.org) of [improving proabilistic password modeling](https://hal.archives-ouvertes.fr/hal-01112124/file/omen.pdf), [estimating guess numbers](https://github.com/RUB-SysSec/Password-Guessing-Framework) or [password strength](https://www.internetsociety.org/sites/default/files/06_3.pdf), one might be interested in cracking hashed (unknown) passwords. Popular password cracking utilities like [Hashcat](https://github.com/hashcat/hashcat) and [John the Ripper](https://github.com/magnumripper/JohnTheRipper) support hundreds of
+How to get from `$2a$10$HNYF4KajSTqxIP/KoiB5tOCVeKUgvscTh32hhAmppFk4T/USmI2B.` to `"GoodOMEN!123"`?
+
+#### Ethics
+OMEN was developed for [academic use cases](https://password-guessing.org) like [improving probabilistic password modeling](https://hal.archives-ouvertes.fr/hal-01112124/file/omen.pdf), [estimating guess numbers](https://github.com/RUB-SysSec/Password-Guessing-Framework) or [password strength](https://www.internetsociety.org/sites/default/files/06_3.pdf), in general, to improve password security. Do not abuse this software to harm other people's privacy or to break the law.
+
+#### Preimage Attacks
+Popular hash evaluators like [Hashcat](https://github.com/hashcat/hashcat) and [John the Ripper](https://github.com/magnumripper/JohnTheRipper) support hundreds of
 hash and cipher formats and could be easily integrated due to their support to
 read password candidates via their standard input (stdin) stream.
 
@@ -273,4 +279,4 @@ source code and the license can be downloaded [here](http://troydhanson.github.c
 
 Contact
 -------
-Visit our [website](https://www.mobsec.rub.de) and follow us on [Twitter](https://twitter.com/hgi_bochum). If you are interested in passwords, consider to contribute and to attend at the [International Conference on Passwords (PASSWORDS)](https://passwordscon.org).
+Visit our [website](https://www.mobsec.rub.de) and follow us on [Twitter](https://twitter.com/hgi_bochum). If you are interested in passwords, consider to contribute and to attend the [International Conference on Passwords (PASSWORDS)](https://passwordscon.org).
