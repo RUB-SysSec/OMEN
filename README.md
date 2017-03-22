@@ -258,12 +258,18 @@ be compared to each other.
 
 #### alphabetCreator
 
-If you want to limit OMEN to passwords complying to a given alphabet you can specify this in the configuration file (`createConfig`). To determine the most promising alphabet, the `alphabetCreator` might be able to help you. The program module creates a new alphabet based on a given password list. The characters of the new alphabet are ordered by their frequency in the password list, beginning with the highest frequency. The length of the alphabet is variable. The created alphabet is based on the 8-bit ASCII table
+If you want to limit OMEN to passwords complying to a given alphabet you can specify this in the configuration file (`createConfig`). To determine the most promising alphabet, the `alphabetCreator` might be able to help you. The program module creates a new alphabet based on a given password list. The **characters of the new alphabet are ordered by their frequency in the password list**, beginning with the highest frequency. The length of the alphabet is variable. The created alphabet is based on the 8-bit ASCII table
 according to ISO 8859-1 (not allowing ’\n’, ’\r’, ’\t’, and ’ ’ (space)).
 Characters that are not part of this table are ignored. Also, an existing
 alphabet may be extended with the most frequent characters.
 
 `./alphabetCreator --pwList password-training-list.txt -s 95 -a some_alpha -o new_alpha`
+
+FAQ
+---
+
+* Very poor performance and strange looking passwords?
+Make sure you generated the alphabet file with the `alphabetCreator`. Manually generating the alphabet is not supported (see [Issue#4](https://github.com/RUB-SysSec/OMEN/issues/4)).
 
 License
 -------
