@@ -16,15 +16,15 @@ passwords in the correct order (descending).
 
 Use a recent Linux version make sure you have installed `git` (Git version control system), `gcc` (GNU Compiler Collection), and `make` (GNU Make). You can install it under Ubuntu Linux via:
 
-`sudo apt-get install build-essential git`
+`$ sudo apt-get install build-essential git`
 
 Check out the source code via:
 
-`git clone https://github.com/RUB-SysSec/OMEN.git OMEN`
+`$ git clone https://github.com/RUB-SysSec/OMEN.git OMEN`
 
 Change into the newly created directory `OMEN` and run:
 
-`make`
+`$ make`
 
 If compilation is successful, you can find `createNG` and `enumNG` within the current directory.
 
@@ -53,7 +53,7 @@ Before one can generate any passwords, the n-gram probabilities have to be estim
 `createNG`. To calculate the probabilities using the default settings, `createNG` must be
 called giving a path to a password list that should be trained:
 
-`./createNG --iPwdList /tmp/password-training-list.txt`
+`$ ./createNG --iPwdList password-training-list.txt`
 
 Each password of the given list must be in a new line. The module then
 reads and evaluates the list generating a couple of files. Besides a config file (`createConfig`) storing the used settings (in this case the default setting), several files are created containing information about the grams and the password length. These files have the extension '`.level`':
@@ -70,7 +70,7 @@ The probabilities of each n-gram and the lengths are mapped to levels between 0
 (most likely) and 10 (least likely). Once those files are created, `enumNG` can
 be used to generate a list of passwords ordered by probabilities. Currently, `enumNG` supports three modes of operation: *file*, *stdout*, *simulated plaintext attack*. In the default mode of `enumNG`, a list of password guesses based on these levels is created. Using the command
 
-`./enumNG`
+`$ ./enumNG`
 
 generates 1 billion passwords and **stores them in a text file**, which can be found
 in the '*results*' folder. The passwords in this file are ordered by level (i.e., by
@@ -78,15 +78,15 @@ probability). Since common text editors are not able to handle such huge files,
 it is recommended for testing to reduce the number of passwords created. This
 can be done using the argument `-m`.
 
-`./enumNG -m 10000`
+`$ ./enumNG -m 10000`
 
 It will create an ordered list with 10,000 passwords only. If you are interested in printing the passwords to the **standard output (stdout) stream** use the argument `-p`.
 
-`./enumNG -p -m 10000`
+`$ ./enumNG -p -m 10000`
 
 If you are interested in evaluating the guessing performance against a *plaintext* password test set use the argument `-s`. Please note: In this mode OMEN benefits from the adaptive length scheduling algorithm incorporating live feedback, which is not available (due to the missing feedback channel) in *file* and *stdout* mode.
 
-`./enumNG -s=password-testing-list.txt -m 10000`
+`$ ./enumNG -s=password-testing-list.txt -m 10000`
 
 The result of this evaluation can be found in the '*results*' folder.
 
@@ -104,11 +104,11 @@ Popular hash evaluators like [Hashcat](https://github.com/hashcat/hashcat) and [
 hash and cipher formats and could be easily integrated due to their support to
 read password candidates via their standard input (stdin) stream.
 
-`./enumNG -p -m 10000 | ./hashcat64.bin  ...`
+`$ ./enumNG -p -m 10000 | ./hashcat64.bin  ...`
 
 or
 
-`./enumNG -p -m 10000 | ./john --stdin ...`
+`$ ./enumNG -p -m 10000 | ./john --stdin ...`
 
 For optimal guessing performance, consider to train `createNG` with a password distribution that is similar to the one you like to crack.
 
@@ -193,7 +193,7 @@ example:
 For the usage of OMEN+ `enumNG` must be called giving a path to a hint and an
 alpha file:
 
-`./enumNG -H hint-file.txt -a alpha-file.txt`
+`$ ./enumNG -H hint-file.txt -a alpha-file.txt`
 
 Performance
 -----------
@@ -254,7 +254,7 @@ implementation of `evalPW` is only a prototype and does not support the whole
 possible functionality and contains **lots of bugs**. For example, the actual password length does not influence the password-level. Therefore, only passwords with the same length can
 be compared to each other.
 
-`./evalPW --pw=demo123`
+`$ ./evalPW --pw=demo123`
 
 #### alphabetCreator
 
@@ -263,7 +263,25 @@ according to ISO 8859-1 (not allowing ’\n’, ’\r’, ’\t’, and ’ ’ 
 Characters that are not part of this table are ignored. Also, an existing
 alphabet may be extended with the most frequent characters.
 
-`./alphabetCreator --pwList password-training-list.txt -s 95 -a some_alpha -o new_alpha`
+```
+# Create an empty alphabet file
+$ touch empty-alphabet-file
+
+# Based on frequency statistics of training file (password-training-list.txt), and given (in this case, empty) alphabet file (empty-alphabet-file), we generate the new alphabet (new-alphabet-file.alphabet)
+$ ./alphabetCreator --pwList password-training-list.txt --size 95 --alphabet empty-alphabet-file --output new-alphabet-file
+
+# Optional: Cleanup and verification
+$ rm empty-alphabet-file
+$ cat new-alphabet-file.alphabet
+ae1ionrls20tm39c8dy54hu6b7kgpjvfwzAxEIOLRNSTMqCDB.YH!U_PKGJ-*VF@WZ#/X$,&+Q?\)=(';%<]~[:^`">{}|
+
+# Now you can train OMEN using the newly generated alphabet
+$ ./createNG --iPwdList password-training-list.txt -A new-alphabet-file.alphabet -v
+
+# Optional: Verification
+$ ./enumNG -p -m 1000 > top1k.txt
+$ grep password top1k.txt
+password```
 
 FAQ
 ---
