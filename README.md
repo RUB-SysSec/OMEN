@@ -281,7 +281,8 @@ $ ./createNG --iPwdList password-training-list.txt -A new-alphabet-file.alphabet
 # Optional: Verification
 $ ./enumNG -p -m 1000 > top1k.txt
 $ grep password top1k.txt
-password```
+password
+```
 
 FAQ
 ---
