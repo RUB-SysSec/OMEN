@@ -1,4 +1,4 @@
-/* 
+/*
  * nGramReader.c
  * @authors: Fabian Angelstorf, Franziska Juckel
  * @copyright: Horst Goertz Institute for IT-Security, Ruhr-University Bochum
@@ -33,7 +33,7 @@ bool read_config (struct nGram_struct *nGrams, struct alphabet_struct *alphabet,
   while (fgets (curLine, sizeof (curLine) - 1, fp) != NULL)
   {
     sscanf (curLine, "# -%s %s", argName, argValue);
-    /* 
+    /*
      * known header options:
      * alphabet %s
      * alphabetsize %i

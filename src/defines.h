@@ -1,4 +1,4 @@
-/* 
+/*
  * defines.h
  * @authors: Fabian Angelstorf, Franziska Juckel
  * @copyright: Horst Goertz Institute for IT-Security, Ruhr-University Bochum
@@ -6,7 +6,7 @@
 
 #ifndef DEFINES_H__
 #define DEFINES_H__
-/* 
+/*
  * DEBUG mode
  *     - 1: debug mode (print debug information to stdout)
  *     - 0: release mode (don't print any debug information)
@@ -15,25 +15,25 @@
 
 // === common defines ===
 
-/* 
+/*
  * clean operation, which checks, if the given is not NULL before calling free
  */
 #define CHECKED_FREE(ptr) if (ptr != NULL) { free(ptr); ptr = NULL; }
 
-/* 
+/*
  *  Wrapper arround exit(int) to gain access to the exit status in the exit_routine
  */
 extern int exit_status;
 
 #define exit(x) (exit)(exit_status = (x));
 
-/* 
+/*
  * If given pointer equals NULL,
  * exit application printing an "Out of Memory" error
  */
 #define EXIT_IF_NULL(ptr) if (ptr == NULL) { printf("Critical Error: Out of Memory\n"); exit(1); }
 
-/* 
+/*
  *  default names, attachment and lengths for the the output files
  */
 // default output file for ngram
@@ -56,7 +56,7 @@ extern int exit_status;
 #define MAX_ATTACHMENT_LENGTH     ((strlen(DEFAULT_FILE_ATTACHMENT_LEVEL) >= strlen(DEFAULT_FILE_ATTACHMENT_COUNT)) ? \
                                    strlen(DEFAULT_FILE_ATTACHMENT_LEVEL) : strlen(DEFAULT_FILE_ATTACHMENT_COUNT))
 
-/* 
+/*
  * alphabet, alphabet sizes and the corresponding nGram sizes
  */
 // default alphabet
@@ -72,7 +72,7 @@ extern int exit_status;
 // size of 3-gram using default alphabet
 #define DEFAULT_SIZE_3_GRAM (DEFAULT_ALPHABET_SIZE * DEFAULT_ALPHABET_SIZE * DEFAULT_ALPHABET_SIZE)
 
-/* 
+/*
  *  password length and level bounds
  */
 // maximum password length

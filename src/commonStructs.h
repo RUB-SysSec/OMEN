@@ -1,4 +1,4 @@
-/* 
+/*
  * commonStructs.h
  * @authors: Fabian Angelstorf, Franziska Juckel
  * @copyright: Horst Goertz Institute for IT-Security, Ruhr-University Bochum
@@ -17,7 +17,7 @@
 // TODO: rewrite this in c++ (allows easier optimizations)
 // === common structs ===
 
-/* 
+/*
  * Encapsulates the input or output filenames for conditionalProb,
  * initalProb, length and config.
  */
@@ -32,7 +32,7 @@ typedef struct filename_struct
   char *smoo;                   // filename for smoothing function
 } filename_struct;
 
-/* 
+/*
  * Encapsulates the different nGram and length arrays
  * for the counts and the level as well as the size of
  * the nGram 'n'. The data is stored as follows:
@@ -58,7 +58,7 @@ typedef struct nGram_struct
   int sizeOf_N;                 // size of the nGram 'n' (size of iP and eP equals sizeOf_N - 1)
 } nGram_struct;
 
-/* 
+/*
  * Contains the alphabet as c-string an the size of this
  * alphabet.
  */
@@ -68,7 +68,7 @@ typedef struct alphabet_struct
   int sizeOf_alphabet;          // strlen(alphabet) + 1
 } alphabet_struct;
 
-/* 
+/*
  * Contains a 2 dimensional array @lastGram where any last gram is sorted by
  * the leading gram (the so called mGram). Once set, the 1st dimension equals
  * the first (n-1) of a cP and the 2nd dimension increases dynamically
@@ -85,7 +85,7 @@ typedef struct sortedLastGram_struct
   int *indexMax;                // max value for 2nd dimensions of @lastGrams ( (if indexCur == indexMax) -> reallocate lastGrams[i])
 } sortedLastGram_struct;
 
-/* 
+/*
  * Contains a 1 dimensional array @iP where the 1st dimension increases dynamically
  * (using @indexCur and @indexMax), containing the position of the according initialProb.
  * The struct is used to store the iPs sorted by level (using an array of
@@ -99,7 +99,7 @@ typedef struct sortedIP_struct
   int indexMax;                 // maximal index of iP( (if indexCur == indexMax) -> reallocate iP)
 } sortedIP_struct;
 
-/* 
+/*
  * Contains two 1 dimensional arrays (@level and @length), which are correlated to each other.
  * The @length at index x has the level stored in @level at index x.
  * @lengthMin stores the minimum level which equals the sizeOf_N - 1 (there can be now PW
@@ -113,7 +113,7 @@ typedef struct sortedLength_struct
 } sortedLength_struct;
 
 // === struct function ===
-/* 
+/*
  * The functions allocate memory for the given struct and
  * set each value to NULL.
  * If the allocation for the struct fails, this function
@@ -133,7 +133,7 @@ void struct_sortedIP_initialize (int maxLevel, struct sortedIP_struct **sortedIP
 
 void struct_sortedLength_initialize (struct sortedLength_struct **sortedLength);
 
-/* 
+/*
  * These functions allocate memory for the content of the given struct
  * setting them to the default values.
  * If the allocation for the content fails, this function
@@ -143,7 +143,7 @@ void struct_filenames_allocateDefaults (struct filename_struct *filenames);
 
 void struct_alphabet_allocateDefaults (struct alphabet_struct *alphabet);
 
-/* 
+/*
  * These functions calculate the sizes of the arrays in @nGrams based
  * on the size of the given @alphabet and allocate the needed nGram arrays.
  * The alphabet must be set before using this function!
@@ -152,7 +152,7 @@ void struct_alphabet_allocateDefaults (struct alphabet_struct *alphabet);
  */
 void struct_nGrams_allocate (struct nGram_struct *nGrams, struct alphabet_struct *alphabet);
 
-/* 
+/*
  * This function copies the content of the nGram_struct @src to
  * the nGram_struct @dest.
  * (dest must be initialized)
@@ -160,7 +160,7 @@ void struct_nGrams_allocate (struct nGram_struct *nGrams, struct alphabet_struct
 void struct_nGrams_copyArrays (struct nGram_struct *dest, // destination (must be initialized)
                                struct nGram_struct *src); // source
 
-/* 
+/*
  * These functions free any memory allocated by the structs (including the struct)
  */
 void struct_nGrams_free (struct nGram_struct **arrays);
@@ -175,7 +175,7 @@ void struct_sortedIP_free (int maxLevel, struct sortedIP_struct **sortedIPStruct
 
 void struct_sortedLength_free (struct sortedLength_struct **sortedLength);
 
-/* 
+/*
  *    Fills the @sortedLastGram struct with the positions found
  *    in @source, where @sortedLastGram[x] contains all positions with Level x.
  *    Therefore the size of @sortedLastGram must be at least MAX_LEVEL.
@@ -186,7 +186,7 @@ void struct_sortedLastGram_fill (int maxLevel, struct sortedLastGram_struct *sor
                                  int sizeOf_N,  // size of the nGram n
                                  int sizeOf_alphabet);  // size of the used alphabet
 
-/* 
+/*
  *    Fills the @sortedIP struct with the positions found
  *    in @source, where @sortedIP[x] contains all positions with Level x.
  *    Therefore the size of @sortedIP must be at least MAX_LEVEL.
@@ -195,7 +195,7 @@ void struct_sortedIP_fill (int maxLevel, struct sortedIP_struct *sortedIP,  // d
                            int *source, // source (unsorted iP array)
                            int source_size);  // size of source array
 
-/* 
+/*
  * Sorts the given length array @source, storing it in the @sortedLength struct.
  * The minimum level equals sizeOf_N - 1 (because there can be now PW shorter than that).
  * The @levelModifire works as follows: the level of each length is adjusted by the actual
@@ -210,7 +210,7 @@ void struct_sortedLength_fill (struct sortedLength_struct *sortedLength,  // des
                                float levelModifire, // this value defines how much the actual length modified the level of each length
                                int levelSet); // if != -1, set all level to this value before applying the levelModifire
 
-/* 
+/*
  * This functions returns the index of the first item stored in @sortedLength
  * with a level larger then @level. The lengths stored in @sortedLength must be sorted
  * by level before calling this function (using struct_fill_sortedLength).

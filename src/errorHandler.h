@@ -1,4 +1,4 @@
-/* 
+/*
  * errorHandler.h
  * @authors: Fabian Angelstorf, Franziska Juckel
  * @copyright: Horst Goertz Institute for IT-Security, Ruhr-University Bochum
@@ -26,7 +26,7 @@
 
 #include "common.h"
 
-/* 
+/*
  * Used to identify an error.
  */
 enum errorTypes

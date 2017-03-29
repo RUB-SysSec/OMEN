@@ -1,4 +1,4 @@
-/* 
+/*
  * nGramReader.h
  * @authors: Fabian Angelstorf, Franziska Juckel
  * @copyright: Horst Goertz Institute for IT-Security, Ruhr-University Bochum
@@ -16,7 +16,7 @@
 
 // === intern functions ===
 
-/* 
+/*
  * // reads config file
  * BOOL read_config();
  *
@@ -35,7 +35,7 @@
 
 // === public funtions ===
 
-/* 
+/*
  *     Reads all needed input files (levels for nGram and initalProb, count and levels for lengths)
  *  based on the config file that must be set in filenames, creating the filenames (attaching
  *  the default file ending) and sets the corresponding @nGrams and @alphabet variables using the

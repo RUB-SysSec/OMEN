@@ -1,4 +1,4 @@
-/* 
+/*
  * createNG.h
  * @authors: Fabian Angelstorf, Franziska Juckel
  * @copyright: Horst Goertz Institute for IT-Security, Ruhr-University Bochum
@@ -14,7 +14,7 @@
 #include "errorHandler.h"
 #include "smoothing.h"
 
-/* 
+/*
  * Used by the write_*ToFile functions.
  * - if writeMode is nonVerbose: only the counts and levels are written into the file
  * - if writeMode is numeric: the array index is written into the file as well
@@ -27,7 +27,7 @@ enum writeModes
 };
 
 // === intern functions ===
-/* 
+/*
  *     These functions are used to adjust the according array based on the given file or length:
  *     void adjust_length();
  *     void adjust_initialProb();
@@ -41,13 +41,13 @@ enum writeModes
 
 // === public functions ===
 
-/* 
+/*
  *     initializes all global parameters, setting them to their default value
  *     !! this function must be called before any other operation !!
  */
 void initialize ();
 
-/* 
+/*
  *  prints all Error-Messages (if any), clears the allocated memory of the
  *  global variables and ends the application
  *  the char* exit_msg is printed out on the command line
@@ -55,7 +55,7 @@ void initialize ();
  */
 void exit_routine ();
 
-/* 
+/*
  *     evaluates given command line arguments using the getopt-library
  *     there has to be at least 1 argument: the input filename
  *     additional arguments are evaluated in this method an the
@@ -64,7 +64,7 @@ void exit_routine ();
  */
 bool evaluate_arguments (struct gengetopt_args_info *args_info);
 
-/* 
+/*
  *  main process: calls evaluate_InputFile and the Write-Methods
  *  returns TRUE, if the creation was successful (no Errors occurred)
  *  otherwise FALSE is returned and the occurred Errors can be viewed using
@@ -72,7 +72,7 @@ bool evaluate_arguments (struct gengetopt_args_info *args_info);
  */
 bool run_creation ();
 
-/* 
+/*
  *     evaluates the input file, reading the 3grams, initial probabilities and the pwd lengths
  *     and storing them in the associated global variables
  *     1. counts the occurrence of any n-gram in the input file (stored in glbl_nGramCount->nG)
@@ -81,7 +81,7 @@ bool run_creation ();
  */
 bool evaluate_inputFile (const char *filenameIn);
 
-/* 
+/*
  *     Writes header and additional information into the given file
  *     the additional information are chosen filenames
  *     header syntax:
@@ -90,7 +90,7 @@ bool evaluate_inputFile (const char *filenameIn);
  */
 bool write_config (const char *filenameConfig);
 
-/* 
+/*
  *  Opens the given files and writes data according to the given
  *  @arrayType. This may be:
  *   - arrayType_nGram
@@ -101,13 +101,13 @@ bool write_config (const char *filenameConfig);
  */
 bool write_array (const char *filename, enum arrayTypes arrayType);
 
-/* 
+/*
  *     Prints the by arguments selected mode as well as the output and input filenames
  *     to the given file pointer @fp.
  */
 void print_settings_createNG (FILE * fp);
 
-/* 
+/*
  * Sets @alphabet according to file under the filename @filename
  * and adjust @sizeOf_alphabet to the size of the new alphabet.
  * If there are problems opening or reading the file, an error
@@ -118,7 +118,7 @@ bool alphabetFromFile (char **alphabet, // pointer to the (old) alphabet
                        int *sizeOf_alphabet,  // pointer to the size of the (old) alphabet
                        const char *filename); // new alphabet
 
-/* 
+/*
  *  Appends any given @prefix, @suffix or the current date (if @dateSuffix is TRUE)
  *  as suffix to all output filenames.
  *  The allocated memory for the char* is freed by this function.

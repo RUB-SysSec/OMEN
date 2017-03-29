@@ -1,4 +1,4 @@
-/* 
+/*
  * createNG.c
  * @authors: Fabian Angelstorf, Franziska Juckel
  * @copyright: Horst Goertz Institute for IT-Security, Ruhr-University Bochum
