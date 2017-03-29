@@ -39,7 +39,7 @@ const char *gengetopt_args_info_help[] = {
   "\nInput Files:",
   "      --pwList=filename    Password list for creating the alphabet (mandatory)",
   "  -s, --size=INT           Defines the alphabet size. The value should be in\n                             range 1 to 256 (mandatory)",
-  "  -a, --alphabet=filename  Defines the file containing the alphabet (mandatory)",
+  "  -a, --alphabet=filename  Defines the file containing the input alphabet",
   "  -o, --output=filename    Defines the output file for the build alphabet\n                             (mandatory)",
   "\nOutput Modes:",
   "  -w, --printWarnings      prints warnings  (default=off)",
@@ -376,8 +376,7 @@ cmdline_parser_required2 (struct gengetopt_args_info *args_info, const char *pro
 
   if (! args_info->alphabet_given)
     {
-      fprintf (stderr, "%s: '--alphabet' ('-a') option required%s\n", prog_name, (additional_error ? additional_error : ""));
-      error_occurred = 1;
+      args_info->alphabet_arg = strdup("/dev/null");
     }
 
   if (! args_info->output_given)
