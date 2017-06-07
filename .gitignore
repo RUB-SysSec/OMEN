@@ -1,2 +1,21 @@
 # C extensions
 *.so
+*.o
+CP.level
+EP.level
+IP.level
+LN.level
+alphabetCreator
+charFrequency.txt
+createConfig
+enumNG
+evalPW
+results/
+src/cmdlineAlphabetCreator.c
+src/cmdlineAlphabetCreator.h
+src/cmdlineCreateNG.c
+src/cmdlineCreateNG.h
+src/cmdlineEnumNG.c
+src/cmdlineEnumNG.h
+src/cmdlineEvalPW.c
+src/cmdlineEvalPW.h

@@ -88,7 +88,7 @@ struct gengetopt_args_info
   const char *printWarnings_help; /**< @brief Prints any warning (if verbose mode is active). help description.  */
   int withCount_flag;	/**< @brief The given password list is counted (like this: #count password). (default=off).  */
   const char *withCount_help; /**< @brief The given password list is counted (like this: #count password). help description.  */
-  
+
   unsigned int help_given ;	/**< @brief Whether help was given.  */
   unsigned int version_given ;	/**< @brief Whether version was given.  */
   unsigned int iPwdList_given ;	/**< @brief Whether iPwdList was given.  */
@@ -197,7 +197,7 @@ void cmdline_parser_print_help(void);
 void cmdline_parser_print_version(void);
 
 /**
- * Initializes all the fields a cmdline_parser_params structure 
+ * Initializes all the fields a cmdline_parser_params structure
  * to their default values
  * @param params the structure to initialize
  */

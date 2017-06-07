@@ -1,4 +1,4 @@
-/* 
+/*
  * enumNG.h
  * @authors: Fabian Angelstorf, Franziska Juckel
  * @copyright: Horst Goertz Institute for IT-Security, Ruhr-University Bochum
@@ -19,7 +19,7 @@
 #define DEFAULT_OUTPUT_CYCLE_FACTOR 1000
 #define DEFAULT_MAX_ATTEMPTS 1000000000
 #define MAX_MAX_ATTEMPTS 1000000000000000
-/* 
+/*
  *  These variables are needed for the attackSimulator functions
  *  and are therefore declared as extern.
  */
@@ -28,13 +28,13 @@ extern uint64_t glbl_createdLengths[MAX_PASSWORD_LENGTH]; // counting the length
 
 // === public functions ===
 
-/* 
+/*
  * initializes all global parameters, setting them to their default value
  * !! this function must be called before any other operation !!
  */
 void initialize ();
 
-/* 
+/*
  *  prints all Error-Messages (if any), clears the allocated memory of the
  *  global variables and ends the application
  *  the char* exit_msg is printed out on the command line
@@ -42,7 +42,7 @@ void initialize ();
  */
 void exit_routine ();
 
-/* 
+/*
  * Evaluates given command line arguments
  * there has to be at least 1 argument: the input filename
  * additional arguments are evaluated in this method an the
@@ -51,7 +51,7 @@ void exit_routine ();
  */
 bool evaluate_arguments (struct gengetopt_args_info *args_info);
 
-/* 
+/*
  * Reads any needed input file using the nGramIO-functions and
  * sets all needed variables accordingly.
  * Returns TRUE on success and FALSE if something went wrong.
@@ -59,7 +59,7 @@ bool evaluate_arguments (struct gengetopt_args_info *args_info);
 bool apply_settings ();
 bool sort_ngrams ();
 
-/* 
+/*
  *  main process: runs the password enumeration
  *  Generates levelChains using the generate_levelChain_live function.
  *  Once a levelChain is found, the actual passwords are generated
@@ -72,7 +72,7 @@ void run_enumeration ();
 void run_enumeration_fixedLenghts ();
 void run_enumeration_optimizedLengths ();
 
-/* 
+/*
  * Generates the next levelChain based on the given @levelChain, with
  * a @length and a level of @levelMax.
  * To generate a levelChain with different length or level, reset each value
@@ -88,7 +88,7 @@ bool getNext_levelChain (int levelChain[MAX_PASSWORD_LENGTH], // next levelChain
                          int levelMax,  // sum level for the next levelChain
                          bool newChain);  // new chain? or create one on based the given levelChain?
 
-/* 
+/*
  * Generates the first chars of a new Password. The used initialProbs
  * have a level equal to @iP_level. Calls the intern function
  * enumerate_password_recursivly to generate the rest of each password.
@@ -97,7 +97,7 @@ bool getNext_levelChain (int levelChain[MAX_PASSWORD_LENGTH], // next levelChain
 bool enumerate_password (int levelChain[MAX_PASSWORD_LENGTH], // levelChain specifying the level of each char in the passwords
                          int lengthMax);  // length of the passwords to be generated
 
-/* 
+/*
  * Creates a new result folder under the subfolder "results". The created
  * folder is named after the current date and time ("Year-Mon-Day_Hou.Min").
  * If the folder all ready exist, an incrementing integer is appended.
@@ -107,19 +107,19 @@ bool enumerate_password (int levelChain[MAX_PASSWORD_LENGTH], // levelChain spec
  */
 void create_resultFolder ();
 
-/* 
+/*
  * Prints the by arguments selected mode as well as the output and input filenames
  * to the given file pointer @fp.
  */
 void print_settings_enumNG (FILE * fp);
 
-/* 
+/*
  * Prints the results of the current run through if the verboseMode is active
  * to the given file pointer @fp.
  */
 void print_report_enumNG (FILE * fp);
 
-/* 
+/*
  * Prints a log file under.
  * Returns TRUE if the log file creation was successful, FALSE if not.
  */
@@ -129,7 +129,7 @@ bool boost_allHints ();
 
 bool boostingMode ();
 
-/* 
+/*
  * Handles signal "ctrl + c" for application abortion
  */
 void sigint_handler (int s);

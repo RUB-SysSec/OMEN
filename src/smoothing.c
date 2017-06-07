@@ -1,4 +1,4 @@
-/* 
+/*
  * smoothing.c
  * @authors: Fabian Angelstorf, Franziska Juckel
  * @copyright: Horst Goertz Institute for IT-Security, Ruhr-University Bochum
@@ -18,7 +18,7 @@
 // the (extern) smoo_selection
 smoo_selection_struct smoo_selection;
 
-/* 
+/*
  * Begin: additive smoothing
  * Simple +1 smoothing. Just add delta (= 1 default) to any n-Gram count and
  * adjust the denominator accordingly.
@@ -131,7 +131,7 @@ void smoo_additive_funct_conditional (char *level,  // level to be set
     *level = maxLevel - 1;
 }
 
-/* 
+/*
  * The additive smoothing supports a different levelAdjustFactor and delta
  * for each arrayType. These are a wrapper around the actual
  * smoothing function selecting thchare according parameter.

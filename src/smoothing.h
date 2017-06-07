@@ -1,4 +1,4 @@
-/* 
+/*
  * smoothing.h
  * @authors: Fabian Angelstorf, Franziska Juckel
  * @copyright: Horst Goertz Institute for IT-Security, Ruhr-University Bochum
@@ -14,7 +14,7 @@
 #include <stdio.h>
 #include "common.h"
 
-/* 
+/*
  * How to implement new smoothings:
  *
  * Every smoothing needs a own struct to store the different parameters
@@ -52,13 +52,13 @@
                                             int, int, char,    \
                                             int)
 
-/* 
+/*
  * enum used to identify the selected smoothing function
  */
 enum smooTypes
 { smooType_additive = 0 };      // additve smoothing (default)
 
-/* 
+/*
  * smoo_selection_struct stores the pointer to the selected smoothing functions.
  * It is declared as extern, so createNG can directly call the smoothing functions
  */
@@ -74,13 +74,13 @@ typedef struct smoo_selection_struct
 
 extern smoo_selection_struct smoo_selection;
 
-/* 
+/*
  * Sets the variables of all smoothings to their default value.
  * The smoo_selection is set to the additve smoothing.
  */
 void smoo_initialize ();
 
-/* 
+/*
  * Opens the given file, checks which smoothing has been
  * selected and calls the according read function.
  * The input file must be an file formated like explained above.
@@ -88,7 +88,7 @@ void smoo_initialize ();
  */
 bool smoo_readInput (const char *filename);
 
-/* 
+/*
  * Uses smoo_types enum to identify the selected array
  * and calls the according print function
  */

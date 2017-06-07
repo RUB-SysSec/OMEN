@@ -1,4 +1,4 @@
-/* 
+/*
  * boosting.h
  * @authors: Fabian Angelstorf, Franziska Juckel
  * @copyright: Horst Goertz Institute for IT-Security, Ruhr-University Bochum
@@ -9,12 +9,12 @@
 
 #include "commonStructs.h"
 
-/* 
+/*
  * Reads boosting factor alpha from file in return array.
  */
 int *read_alphas (char *filename, int *alpha_count);
 
-/* 
+/*
  * Reads hints from file in return array.
  */
 char **read_hints (char *filename, int alpha_count, int hint_count);

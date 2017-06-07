@@ -1,4 +1,4 @@
-/* 
+/*
  * boosting.c
  * @authors: Fabian Angelstorf, Franziska Juckel
  * @copyright: Horst Goertz Institute for IT-Security, Ruhr-University Bochum
@@ -286,7 +286,7 @@ void boost (nGram_struct * nGrams, const alphabet_struct * const alph, const int
   }
 }
 
-/* 
+/*
  * undo the changes by boost()
  */
 void deboost (nGram_struct * nGrams)

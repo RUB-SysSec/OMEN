@@ -49,7 +49,7 @@ struct gengetopt_args_info
   char * config_arg;	/**< @brief Change the used config file.  */
   char * config_orig;	/**< @brief Change the used config file original value given at command line.  */
   const char *config_help; /**< @brief Change the used config file help description.  */
-  
+
   unsigned int help_given ;	/**< @brief Whether help was given.  */
   unsigned int version_given ;	/**< @brief Whether version was given.  */
   unsigned int pw_given ;	/**< @brief Whether pw was given.  */
@@ -144,7 +144,7 @@ void cmdline_parser_print_help(void);
 void cmdline_parser_print_version(void);
 
 /**
- * Initializes all the fields a cmdline_parser_params structure 
+ * Initializes all the fields a cmdline_parser_params structure
  * to their default values
  * @param params the structure to initialize
  */
