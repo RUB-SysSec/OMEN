@@ -1,6 +1,6 @@
 CFLAGS = -std=gnu11 -O3 -Wall -Wpedantic -g -flto
 LDFLAGS = -g -lm -flto
-VERSION = 0.3.0
+VERSION = 0.3.1
 
 all: createNG enumNG evalPW alphabetCreator clean-o
 

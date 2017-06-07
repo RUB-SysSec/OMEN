@@ -264,14 +264,10 @@ Characters that are not part of this table are ignored. Also, an existing
 alphabet may be extended with the most frequent characters.
 
 ```
-# Create an empty alphabet file
-$ touch empty-alphabet-file
+# Based on the frequency statistics of the training file (password-training-list.txt), we generate the new alphabet (new-alphabet-file.alphabet)
+$ ./alphabetCreator --pwList password-training-list.txt --size 95 --output new-alphabet-file
 
-# Based on frequency statistics of training file (password-training-list.txt), and given (in this case, empty) alphabet file (empty-alphabet-file), we generate the new alphabet (new-alphabet-file.alphabet)
-$ ./alphabetCreator --pwList password-training-list.txt --size 95 --alphabet empty-alphabet-file --output new-alphabet-file
-
-# Optional: Cleanup and verification
-$ rm empty-alphabet-file
+# Optional: Verification
 $ cat new-alphabet-file.alphabet
 ae1ionrls20tm39c8dy54hu6b7kgpjvfwzAxEIOLRNSTMqCDB.YH!U_PKGJ-*VF@WZ#/X$,&+Q?\)=(';%<]~[:^`">{}|
 

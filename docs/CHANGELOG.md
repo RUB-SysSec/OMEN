@@ -7,6 +7,14 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Parallelization for OMEN+
 - Incorporation of feedback based learning into OMEN
 - Refactoring of the sorting algorithm for the n-grams (cpp std library sort?)
+- Internal processing uses UTF-32 ([Issue #1](https://github.com/RUB-SysSec/OMEN/issues/1))
+- Allow running from other directories ([Issue #2](https://github.com/RUB-SysSec/OMEN/issues/2))
+- Allow resuming from a specific point ([Issue #3](https://github.com/RUB-SysSec/OMEN/issues/3))
+
+## [0.3.1] - 2017-06-07
+### Fixed
+- `alphabetCreator`: Allow missing `-a` option, defaulting to `/dev/null`
+- Updated README and CHANGELOG
 
 ## [0.3.0] - 2016-07-21
 ### Added
