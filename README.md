@@ -47,6 +47,10 @@ If compilation is successful, you can find `createNG` and `enumNG` within the cu
 
 If you like, you can now remove the `src` folder and the `makefile` file, they are no longer used.
 
+#### Windows User?
+
+A short installation guide using Cygwin on Windows 10 can be found [here](https://www.password-guessing.org/blog/post/omen-on-windows-using-cygwin/).
+
 ### Basic Usage
 
 Before one can generate any passwords, the n-gram probabilities have to be estimated using
