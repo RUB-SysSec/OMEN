@@ -261,7 +261,7 @@ bool evaluate_arguments (struct gengetopt_args_info *args_info)
     struct_nGrams_allocate (glbl_nGramCount, glbl_alphabet);
 
   // allocate memory and copy filename
-  glbl_filenames->pwList = (char *) malloc (sizeof (char) * strlen (args_info->iPwdList_arg + 1));
+  glbl_filenames->pwList = (char *) malloc (sizeof (char) * strlen (args_info->iPwdList_arg));
   if (glbl_filenames->pwList == NULL)
   {
     errorHandler_print (errorType_Error, "Out of Memory\n");
