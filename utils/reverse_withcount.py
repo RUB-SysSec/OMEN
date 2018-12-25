@@ -4,7 +4,7 @@
 '''
 :author: Maximilian Golla
 :contact: maximilian.golla@rub.de
-:version: 0.3.0, 2017-03-19
+:version: 0.3.1, 2018-12-25
 
 Reverse withcount format produced by "uniq -c"
 Output of this script needs to be shuffled again via "shuf"
@@ -19,7 +19,7 @@ pw_re = re.compile('^\s*[0-9]*\s')
 occ_re = re.compile('^\s*[0-9]*')
 
 # Open file with universal newlines
-with open(str(sys.argv[1]), 'rU') as passwordfile:
+with open(sys.argv[1], 'rU') as passwordfile:
     for line in passwordfile:
         # Remove newline (Unix '\n', Mac '\r', Windows '\r\n')
         line = line.rstrip('\r\n')
@@ -32,5 +32,5 @@ with open(str(sys.argv[1]), 'rU') as passwordfile:
             for o in range(0, occ):
                 print("{}".format(pw))
         except:
-            # If something wents wrong, print to standard error (stderr) stream
+            # If something goes wrong, print to standard error (stderr) stream
             sys.stderr.write("Error: {}\n".format(line))

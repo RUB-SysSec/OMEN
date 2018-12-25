@@ -1,6 +1,6 @@
 package     "alphabetCreator"
 version     "__VERSION__"
-versiontext "The MIT License (MIT)\nCopyright (c) 2017 Horst Goertz Institute for IT-Security\n(Ruhr-University Bochum)"
+versiontext "The MIT License (MIT)\nCopyright (c) 2019 Horst Goertz Institute for IT-Security\n(Ruhr-University Bochum)"
 description "alphabetCreator is part of the Ordered Markov ENumerator (OMEN).\n\
 alphabetCreator creates a new alphabet based on a given password list."
 

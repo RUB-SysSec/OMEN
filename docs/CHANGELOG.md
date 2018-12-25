@@ -11,6 +11,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Allow running from other directories ([Issue #2](https://github.com/RUB-SysSec/OMEN/issues/2))
 - Allow resuming from a specific point ([Issue #3](https://github.com/RUB-SysSec/OMEN/issues/3))
 
+## [0.3.2] - 2018-12-25
+### Fixed
+- `enumNG`: Fixed overflow in `--maxattempts` (`-m`) option. Changed the data type for the argument parsing via *GNU Gengetopt* from `int` to `longlong` to allow 1 to 10^15 guesses.
+
 ## [0.3.1] - 2017-06-07
 ### Fixed
 - `alphabetCreator`: Allow missing `-a` option, defaulting to `/dev/null`

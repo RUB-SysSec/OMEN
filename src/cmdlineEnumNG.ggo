@@ -1,6 +1,6 @@
 package     "enumNG"
 version     "__VERSION__"
-versiontext "The MIT License (MIT)\nCopyright (c) 2017 Horst Goertz Institute for IT-Security\n(Ruhr-University Bochum)"
+versiontext "The MIT License (MIT)\nCopyright (c) 2019 Horst Goertz Institute for IT-Security\n(Ruhr-University Bochum)"
 description "enumNG is part of the Ordered Markov ENumerator (OMEN).\nenumNG creates passwords based on the nGrams defined in createConfig."
 
 section "Modes"
@@ -58,8 +58,8 @@ option "fixedLength"
        optional
 option "maxattempts"
        m
-       "Set the amount of passwords created. The value should be in range 10^-1 to 10^12"
-       int
+       "Set the amount of passwords created. The value should be in range 1 to 10^15"
+       longlong
        optional
 option "endless"
        e

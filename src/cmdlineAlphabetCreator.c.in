@@ -29,7 +29,7 @@ const char *gengetopt_args_info_purpose = "";
 
 const char *gengetopt_args_info_usage = "Usage: alphabetCreator [OPTIONS]...";
 
-const char *gengetopt_args_info_versiontext = "The MIT License (MIT)\nCopyright (c) 2017 Horst Goertz Institute for IT-Security\n(Ruhr-University Bochum)";
+const char *gengetopt_args_info_versiontext = "The MIT License (MIT)\nCopyright (c) 2019 Horst Goertz Institute for IT-Security\n(Ruhr-University Bochum)";
 
 const char *gengetopt_args_info_description = "alphabetCreator is part of the Ordered Markov ENumerator (OMEN).\nalphabetCreator creates a new alphabet based on a given password list.";
 

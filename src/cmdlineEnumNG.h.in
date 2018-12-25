@@ -66,9 +66,13 @@ struct gengetopt_args_info
   int fixedLength_arg;	/**< @brief Only generate Passwords of the given length between 3 and 19. Default disabled. (default='0').  */
   char * fixedLength_orig;	/**< @brief Only generate Passwords of the given length between 3 and 19. Default disabled. original value given at command line.  */
   const char *fixedLength_help; /**< @brief Only generate Passwords of the given length between 3 and 19. Default disabled. help description.  */
-  int maxattempts_arg;	/**< @brief Set the amount of passwords created. The value should be in range 10^-1 to 10^12.  */
-  char * maxattempts_orig;	/**< @brief Set the amount of passwords created. The value should be in range 10^-1 to 10^12 original value given at command line.  */
-  const char *maxattempts_help; /**< @brief Set the amount of passwords created. The value should be in range 10^-1 to 10^12 help description.  */
+  #if defined(HAVE_LONG_LONG) || defined(HAVE_LONG_LONG_INT)
+  long long int maxattempts_arg;	/**< @brief Set the amount of passwords created. The value should be in range 1 to 10^15.  */
+  #else
+  long maxattempts_arg;	/**< @brief Set the amount of passwords created. The value should be in range 1 to 10^15.  */
+  #endif
+  char * maxattempts_orig;	/**< @brief Set the amount of passwords created. The value should be in range 1 to 10^15 original value given at command line.  */
+  const char *maxattempts_help; /**< @brief Set the amount of passwords created. The value should be in range 1 to 10^15 help description.  */
   int endless_flag;	/**< @brief Generate all possible passwords (this may take a while) (default=off).  */
   const char *endless_help; /**< @brief Generate all possible passwords (this may take a while) help description.  */
   int ignoreEP_flag;	/**< @brief Ignore the endProbs while generating Passwords (default=off).  */

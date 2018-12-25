@@ -29,34 +29,34 @@ const char *gengetopt_args_info_purpose = "";
 
 const char *gengetopt_args_info_usage = "Usage: enumNG [OPTIONS]...";
 
-const char *gengetopt_args_info_versiontext = "The MIT License (MIT)\nCopyright (c) 2017 Horst Goertz Institute for IT-Security\n(Ruhr-University Bochum)";
+const char *gengetopt_args_info_versiontext = "The MIT License (MIT)\nCopyright (c) 2019 Horst Goertz Institute for IT-Security\n(Ruhr-University Bochum)";
 
 const char *gengetopt_args_info_description = "enumNG is part of the Ordered Markov ENumerator (OMEN).\nenumNG creates passwords based on the nGrams defined in createConfig.";
 
 const char *gengetopt_args_info_help[] = {
-  "  -h, --help               Print help and exit",
-  "  -V, --version            Print version and exit",
+  "  -h, --help                  Print help and exit",
+  "  -V, --version               Print version and exit",
   "\nModes:",
-  "  -u, --username=FILENAME  Activate username mode using the data in the given\n                             file",
-  "  -s, --simAtt=FILENAME    Execute a simulated attack against the given target\n                             file",
-  "  -p, --pipeMode           Only print generated Passwords and nothing else\n                             (overrides any other mode!)  (default=off)",
+  "  -u, --username=FILENAME     Activate username mode using the data in the\n                                given file",
+  "  -s, --simAtt=FILENAME       Execute a simulated attack against the given\n                                target file",
+  "  -p, --pipeMode              Only print generated Passwords and nothing else\n                                (overrides any other mode!)  (default=off)",
   "\nPassword Generation:",
-  "  -a, --alpha=FILENAME     Apply boosting factor alpha. Read alpha values from\n                             filename. Alphas need to be in the same order as\n                             the hints.",
-  "  -H, --hint=FILENAME      File containing the hints for alpha boosting. Need\n                             to be in the same order as the alpha values.",
-  "      --boostEP            Controls wether EPs are boosted or not.\n                             (default=off)",
-  "  -L, --llFactor=FLOAT     Apply the given level length factor. Factor should\n                             be in range 0.0 to 10.0  (default=`0.0')",
-  "  -S, --llSet=INT          Set all length level to the given value. Values\n                             should be in range 0 to 101  (default=`0')",
-  "  -O, --optimizedLS        Activate optimized length scheduling  (default=off)",
-  "  -l, --fixedLength=INT    Only generate Passwords of the given length between\n                             3 and 19. Default disabled.  (default=`0')",
-  "  -m, --maxattempts=INT    Set the amount of passwords created. The value\n                             should be in range 10^-1 to 10^12",
-  "  -e, --endless            Generate all possible passwords (this may take a\n                             while)  (default=off)",
-  "  -E, --ignoreEP           Ignore the endProbs while generating Passwords\n                             (default=off)",
+  "  -a, --alpha=FILENAME        Apply boosting factor alpha. Read alpha values\n                                from filename. Alphas need to be in the same\n                                order as the hints.",
+  "  -H, --hint=FILENAME         File containing the hints for alpha boosting.\n                                Need to be in the same order as the alpha\n                                values.",
+  "      --boostEP               Controls wether EPs are boosted or not.\n                                (default=off)",
+  "  -L, --llFactor=FLOAT        Apply the given level length factor. Factor\n                                should be in range 0.0 to 10.0  (default=`0.0')",
+  "  -S, --llSet=INT             Set all length level to the given value. Values\n                                should be in range 0 to 101  (default=`0')",
+  "  -O, --optimizedLS           Activate optimized length scheduling\n                                (default=off)",
+  "  -l, --fixedLength=INT       Only generate Passwords of the given length\n                                between 3 and 19. Default disabled.\n                                (default=`0')",
+  "  -m, --maxattempts=LONGLONG  Set the amount of passwords created. The value\n                                should be in range 1 to 10^15",
+  "  -e, --endless               Generate all possible passwords (this may take a\n                                while)  (default=off)",
+  "  -E, --ignoreEP              Ignore the endProbs while generating Passwords\n                                (default=off)",
   "\nOutput Modes:",
-  "  -v, --verbose            Gain information about settings and results during\n                             run time  (default=off)",
-  "  -F, --verboseFile        Stores the generated passwords on hard drive disc\n                             (independent of the used mode)  (default=off)",
-  "  -w, --printWarnings      Prints any warning (if verbose mode is active).\n                             (default=off)",
+  "  -v, --verbose               Gain information about settings and results\n                                during run time  (default=off)",
+  "  -F, --verboseFile           Stores the generated passwords on hard drive disc\n                                (independent of the used mode)  (default=off)",
+  "  -w, --printWarnings         Prints any warning (if verbose mode is active).\n                                (default=off)",
   "\nOthers:",
-  "  -C, --config=FILENAME    Change the used config file",
+  "  -C, --config=FILENAME       Change the used config file",
     0
 };
 
@@ -65,6 +65,7 @@ typedef enum {ARG_NO
   , ARG_STRING
   , ARG_INT
   , ARG_FLOAT
+  , ARG_LONGLONG
 } cmdline_parser_arg_type;
 
 static
@@ -501,6 +502,13 @@ int update_arg(void *field, char **orig_field,
   case ARG_FLOAT:
     if (val) *((float *)field) = (float)strtod (val, &stop_char);
     break;
+  case ARG_LONGLONG:
+#if defined(HAVE_LONG_LONG) || defined(HAVE_LONG_LONG_INT)
+    if (val) *((long long int*)field) = (long long int) strtoll (val, &stop_char, 0);
+#else
+    if (val) *((long *)field) = (long)strtol (val, &stop_char, 0);
+#endif
+    break;
   case ARG_STRING:
     if (val) {
       string_field = (char **)field;
@@ -517,6 +525,7 @@ int update_arg(void *field, char **orig_field,
   switch(arg_type) {
   case ARG_INT:
   case ARG_FLOAT:
+  case ARG_LONGLONG:
     if (val && !(stop_char && *stop_char == '\0')) {
       fprintf(stderr, "%s: invalid numeric value: %s\n", package_name, val);
       return 1; /* failure */
@@ -726,12 +735,12 @@ cmdline_parser_internal (
             goto failure;
 
           break;
-        case 'm':	/* Set the amount of passwords created. The value should be in range 10^-1 to 10^12.  */
+        case 'm':	/* Set the amount of passwords created. The value should be in range 1 to 10^15.  */
 
 
           if (update_arg( (void *)&(args_info->maxattempts_arg),
                &(args_info->maxattempts_orig), &(args_info->maxattempts_given),
-              &(local_args_info.maxattempts_given), optarg, 0, 0, ARG_INT,
+              &(local_args_info.maxattempts_given), optarg, 0, 0, ARG_LONGLONG,
               check_ambiguity, override, 0, 0,
               "maxattempts", 'm',
               additional_error))
