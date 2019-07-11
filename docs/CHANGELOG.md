@@ -3,7 +3,7 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
-### Added
+### Planned
 - Parallelization for OMEN+
 - Incorporation of feedback based learning into OMEN
 - Refactoring of the sorting algorithm for the n-grams (cpp std library sort?)
